@@ -212,6 +212,33 @@ void APyActor::CallPythonActorMethod(FString method_name, FString args)
 	Py_DECREF(ret);
 }
 
+void APyActor::CallPythonActorMethodWithVector(FString method_name, FVector arg)
+{
+	if (!py_actor_instance)
+		return;
+
+	FScopePythonGIL gil;
+
+	PyObject* ret = nullptr;
+
+	PyObject* py_arg_vector = (PyObject*)py_ue_new_fvector(arg);
+	if (!py_arg_vector)
+	{
+		unreal_engine_py_log_error();
+		return;
+	}
+	
+	ret = PyObject_CallMethod(py_actor_instance, TCHAR_TO_UTF8(*method_name), (char*)"O", py_arg_vector);
+	
+
+	if (!ret)
+	{
+		unreal_engine_py_log_error();
+		return;
+	}
+	Py_DECREF(ret);
+}
+
 bool APyActor::CallPythonActorMethodBool(FString method_name, FString args)
 {
 	if (!py_actor_instance)

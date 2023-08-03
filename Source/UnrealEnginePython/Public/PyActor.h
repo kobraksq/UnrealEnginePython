@@ -45,12 +45,15 @@ public:
 	void CallPythonActorMethod(FString method_name, FString args);
 
 	UFUNCTION(BlueprintCallable, Category = "Python")
+	void CallPythonActorMethodWithVector(FString method_name, FVector arg);
+
+	UFUNCTION(BlueprintCallable, Category = "Python")
 	bool CallPythonActorMethodBool(FString method_name, FString args);
 
 	UFUNCTION(BlueprintCallable, Category = "Python")
 	FString CallPythonActorMethodString(FString method_name, FString args);
 
-private:
+protected:
 	PyObject *py_actor_instance;
 	// mapped uobject, required for debug and advanced reflection
 	ue_PyUObject *py_uobject;
