@@ -23,6 +23,27 @@ PyObject *py_ue_get_socket_location(ue_PyUObject *self, PyObject * args)
 	return py_ue_new_fvector(vec);
 }
 
+PyObject* py_ue_get_socket_location_local(ue_PyUObject* self, PyObject* args)
+{
+
+	ue_py_check(self);
+
+	char* socket_name;
+	if (!PyArg_ParseTuple(args, "s:get_socket_location_local", &socket_name))
+	{
+		return NULL;
+	}
+
+	if (!self->ue_object->IsA<USceneComponent>())
+		return PyErr_Format(PyExc_Exception, "uobject is not a USceneComponent");
+
+	USceneComponent* component = (USceneComponent*)self->ue_object;
+
+	FTransform transform = component->GetSocketTransform(UTF8_TO_TCHAR(socket_name), ERelativeTransformSpace::RTS_Component);
+	return py_ue_new_fvector(transform.GetTranslation());
+}
+
+
 PyObject *py_ue_get_socket_rotation(ue_PyUObject *self, PyObject * args)
 {
 

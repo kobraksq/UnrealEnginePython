@@ -945,6 +945,7 @@ static PyMethodDef ue_PyUObject_methods[] = {
 	{ "add_impulse", (PyCFunction)py_ue_add_impulse, METH_VARARGS, "" },
 	{ "add_angular_impulse", (PyCFunction)py_ue_add_angular_impulse, METH_VARARGS, "" },
 	{ "add_force", (PyCFunction)py_ue_add_force, METH_VARARGS, "" },
+	{ "add_force_location", (PyCFunction)py_ue_add_force_location, METH_VARARGS, "" },
 	{ "add_force_location_local", (PyCFunction)py_ue_add_force_location_local, METH_VARARGS, "" },
 	{ "add_torque", (PyCFunction)py_ue_add_torque, METH_VARARGS, "" },
 	{ "set_physics_linear_velocity", (PyCFunction)py_ue_set_physics_linear_velocity, METH_VARARGS, "" },
@@ -1035,6 +1036,7 @@ static PyMethodDef ue_PyUObject_methods[] = {
 	// Attaching
 
 	{ "get_socket_location", (PyCFunction)py_ue_get_socket_location, METH_VARARGS, "" },
+	{ "get_socket_location_local", (PyCFunction)py_ue_get_socket_location_local, METH_VARARGS, "" },
 	{ "get_socket_rotation", (PyCFunction)py_ue_get_socket_rotation, METH_VARARGS, "" },
 	{ "get_socket_transform", (PyCFunction)py_ue_get_socket_transform, METH_VARARGS, "" },
 	{ "get_socket_world_transform", (PyCFunction)py_ue_get_socket_world_transform, METH_VARARGS, "" },
